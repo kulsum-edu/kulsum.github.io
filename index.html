@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ColorMatch AI</title>
+    <style>
+        body {
+            background-color: #1c1c1c;
+            color: #f8f8f8;
+            font-family: 'Poppins', sans-serif;
+            padding: 2rem;
+        }
+        h1 {
+            color: lavender;
+        }
+        label, select, button {
+            display: block;
+            margin: 1rem 0;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: lavender;
+            border: none;
+            color: black;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .color-swatch {
+            display: inline-block;
+            width: 100px;
+            height: 100px;
+            margin: 10px;
+            border-radius: 10px;
+            line-height: 100px;
+            text-align: center;
+            color: #000;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>🎨 ColorMatch AI</h1>
+    <form action="/predict" method="POST">
+        <label for="skin_tone">Skin Tone:</label>
+        <select name="skin_tone" id="skin_tone">
+            <option>Fair Porcelain</option>
+            <option>Tan Cool</option>
+            <option>Deep Cool</option>
+        </select>
+
+        <label for="event_type">Event Type:</label>
+        <select name="event_type" id="event_type">
+            <option>Wedding</option>
+            <option>Party</option>
+            <option>Formal</option>
+            <option>Casual</option>
+        </select>
+
+        <button type="submit">Suggest Colors</button>
+    </form>
+
+    {% if result %}
+        <h2>Your Colors:</h2>
+        {% for color in result %}
+            <div class="color-swatch" style="background-color: {{ color }};">{{ color }}</div>
+        {% endfor %}
+    {% endif %}
+</body>
+</html>
